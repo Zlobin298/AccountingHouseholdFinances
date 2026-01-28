@@ -18,7 +18,6 @@ public class MainController {
 
     @PostMapping("/chart")
     protected String chart(@Valid FinancesDTO dto) {
-
         return "redirect:/home";
     }
 }
