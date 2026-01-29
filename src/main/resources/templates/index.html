@@ -3,20 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BudgetMagic</title>
+    <title>BudgetMagic — Аналитика расходов</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<form th:method="POST" th:action="@{/chart}">
-    <label for="required">Введите обязательные расходы:</label>
-    <input type="number" id="required" name="required" required><br>
 
-    <label for="desirable">Введите желанные расходы:</label>
-    <input type="number" id="desirable" name="desirable" required><br>
+<h1>BudgetMagic</h1>
 
-    <label for="imageBased">Введите имиджевые расходы:</label>
-    <input type="number" id="imageBased" name="imageBased" required><br>
+<div class="charts-container">
+    <div class="card">
+        <h3>Структура расходов (Bar)</h3>
+        <canvas id="barChart"></canvas>
+    </div>
 
-    <button type="submit">получить график расходов</button>
-</form>
+    <div class="card">
+        <h3>Распределение (Pie)</h3>
+        <canvas id="pieChart"></canvas>
+    </div>
+</div>
+
+<div class="form-card">
+    <form th:method="POST" th:action="@{/chart}">
+        <div class="form-group">
+            <label for="required">Обязательные расходы (руб.)</label>
+            <input type="number" id="required" name="required" placeholder="Напр. 20000" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label for="desirable">Желанные расходы (руб.)</label>
+            <input type="number" id="desirable" name="desirable" placeholder="Напр. 10000" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label for="imageBased">Имиджевые расходы (руб.)</label>
+            <input type="number" id="imageBased" name="imageBased" placeholder="Напр. 5000" min="0" required>
+        </div>
+
+        <button type="submit">Обновить графики</button>
+    </form>
+</div>
+
+<script src="/js/chartBar.js"></script>
+<script src="/js/chartPie.js"></script>
 </body>
 </html>
